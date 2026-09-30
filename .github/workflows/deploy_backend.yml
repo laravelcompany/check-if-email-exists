@@ -7,7 +7,7 @@ on:
 
 jobs:
   get-tag:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       GITHUB_TAG: ${{ steps.vars.outputs.GITHUB_TAG }}
     steps:
@@ -17,7 +17,7 @@ jobs:
         run: echo ::set-output name=GITHUB_TAG::${GITHUB_REF:10} # Remove /refs/head/
 
   docker-publish:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: get-tag
     steps:
       - uses: actions/checkout@master
